@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../config/theme.dart';
 import '../models/business.dart';
 import '../providers/career_provider.dart';
-import '../providers/player_provider.dart';
 
 class BusinessScreen extends StatelessWidget {
   const BusinessScreen({super.key});

@@ -5,7 +5,6 @@ import '../models/career_milestone.dart';
 import '../models/business.dart';
 import '../models/investment.dart';
 import '../models/film_project.dart';
-import '../models/film_crew_member.dart';
 import '../models/political_position.dart';
 import '../models/policy_stance.dart';
 import '../models/scandal.dart';
@@ -120,25 +119,25 @@ class CareerProvider extends ChangeNotifier {
   }
 
   Future<void> addBusiness(Business business) async {
-    final id = await _database.insert('businesses', business.toMap());
+    await _database.insert('businesses', business.toMap());
     _businesses.add(business);
     notifyListeners();
   }
 
   Future<void> addInvestment(Investment investment) async {
-    final id = await _database.insert('investments', investment.toMap());
+    await _database.insert('investments', investment.toMap());
     _investments.add(investment);
     notifyListeners();
   }
 
   Future<void> addFilmProject(FilmProject project) async {
-    final id = await _database.insert('film_projects', project.toMap());
+    await _database.insert('film_projects', project.toMap());
     _filmProjects.add(project);
     notifyListeners();
   }
 
   Future<void> addPosition(PoliticalPosition position) async {
-    final id = await _database.insert('political_positions', position.toMap());
+    await _database.insert('political_positions', position.toMap());
     _positions.add(position);
     notifyListeners();
   }

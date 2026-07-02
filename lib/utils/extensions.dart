@@ -34,7 +34,7 @@ extension IntExtensions on int {
 
 extension DoubleExtensions on double {
   double clampToRange(double min, double max) {
-    return clamp(min, max);
+    return clamp(min, max).toDouble();
   }
 
   String toCurrency({String symbol = '\$', int decimals = 0}) {

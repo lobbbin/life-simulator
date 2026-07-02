@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 import '../models/conversation_message.dart';
 import '../providers/settings_provider.dart';
@@ -20,13 +19,12 @@ class AiService {
   String? _apiKey;
   String _provider = 'openai';
   String _model = 'gpt-4';
-  bool _streaming = false;
 
   void configure(SettingsProvider settings) {
     _apiKey = settings.apiKey;
     _provider = settings.aiProvider;
     _model = settings.aiModel;
-    _streaming = settings.streamingEnabled;
+    // streaming setting stored in settings provider
   }
 
   bool get isConfigured => _apiKey != null && _apiKey!.isNotEmpty;
@@ -188,7 +186,6 @@ class AiService {
 
   /// Fallback response when AI is not configured — generates a basic simulation response
   AiResponse _fallbackResponse({required String userMessage}) {
-    final random = Random();
     final actions = ['Check your stats', 'Go for a walk', 'Check your phone', 'Talk to someone'];
 
     return AiResponse(

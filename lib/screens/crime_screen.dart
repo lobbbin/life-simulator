@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../config/theme.dart';
 import '../models/career_path.dart';
-import '../models/crime_crew.dart';
 import '../providers/career_provider.dart';
 import '../providers/player_provider.dart';
 

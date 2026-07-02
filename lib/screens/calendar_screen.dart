@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../config/theme.dart';
 import '../providers/time_provider.dart';
 import '../providers/player_provider.dart';
-import '../models/calendar_event.dart';
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});
@@ -21,7 +19,7 @@ class CalendarScreen extends StatelessWidget {
               children: [
                 _buildDateHeader(timeProvider),
                 const SizedBox(height: 16),
-                _buildSeasonInfo(timeProvider),
+                _buildSeasonInfo(context, timeProvider),
                 const SizedBox(height: 16),
                 _buildEventsSection(playerProvider),
               ],
@@ -95,7 +93,8 @@ class CalendarScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSeasonInfo(TimeProvider time) {
+  Widget _buildSeasonInfo(BuildContext context, TimeProvider time) {
+    final ctx = this.context;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),

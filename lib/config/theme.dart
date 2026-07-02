@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color _primaryLight = Color(0xFF1565C0);
-  static const Color _primaryDark = Color(0xFF90CAF9);
-  static const Color _accent = Color(0xFF26A69A);
-  static const Color _error = Color(0xFFD32F2F);
-  static const Color _success = Color(0xFF388E3C);
-  static const Color _warning = Color(0xFFF57C00);
+  static const Color primaryLight = Color(0xFF1565C0);
+  static const Color primaryDark = Color(0xFF90CAF9);
+  static const Color accent = Color(0xFF26A69A);
+  static const Color errorColor = Color(0xFFD32F2F);
 
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       colorScheme: ColorScheme.light(
-        primary: _primaryLight,
-        secondary: _accent,
-        error: _error,
+        primary: primaryLight,
+        secondary: accent,
+        error: errorColor,
         surface: Colors.grey[50]!,
       ),
       scaffoldBackgroundColor: Colors.grey[50],
       appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: true,
-        backgroundColor: _primaryLight,
+        backgroundColor: primaryLight,
         foregroundColor: Colors.white,
       ),
       cardTheme: CardTheme(
@@ -37,12 +35,12 @@ class AppTheme {
         fillColor: Colors.white,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: _accent,
+        backgroundColor: accent,
         foregroundColor: Colors.white,
       ),
       dividerTheme: const DividerThemeData(space: 1, thickness: 0.5),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: _primaryLight,
+        selectedItemColor: primaryLight,
         unselectedItemColor: Colors.grey,
       ),
     );
@@ -53,9 +51,9 @@ class AppTheme {
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.dark(
-        primary: _primaryDark,
-        secondary: _accent,
-        error: _error,
+        primary: primaryDark,
+        secondary: accent,
+        error: errorColor,
         surface: const Color(0xFF1E1E1E),
       ),
       scaffoldBackgroundColor: const Color(0xFF121212),
@@ -78,18 +76,18 @@ class AppTheme {
         fillColor: const Color(0xFF2C2C2C),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: _accent,
+        backgroundColor: accent,
         foregroundColor: Colors.white,
       ),
       dividerTheme: DividerThemeData(space: 1, thickness: 0.5, color: Colors.grey[800]),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: _primaryDark,
+        selectedItemColor: primaryDark,
         unselectedItemColor: Colors.grey,
       ),
     );
   }
 
-  // Custom colors
+  // Custom stat colors
   static const Color healthGreen = Color(0xFF4CAF50);
   static const Color energyYellow = Color(0xFFFFC107);
   static const Color happinessOrange = Color(0xFFFF9800);
@@ -117,7 +115,7 @@ class AppTheme {
     return statColors[statName.toLowerCase()] ?? Colors.grey;
   }
 
-  // Reputation colors
+  // Reputation / career path colors
   static const Color crimeRed = Color(0xFFB71C1C);
   static const Color politicsGold = Color(0xFFFFD700);
   static const Color businessBlue = Color(0xFF1976D2);

@@ -6,10 +6,8 @@ import '../providers/player_provider.dart';
 import '../providers/chat_provider.dart';
 import '../providers/time_provider.dart';
 import '../providers/simulation_provider.dart';
-import '../models/player_stats.dart';
 import '../widgets/chat_bubble.dart';
 import '../widgets/action_suggestion_chip.dart';
-import '../widgets/stat_bar.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -304,7 +302,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
             final message = chat.messages[index];
             final isPlayer = message.role == 'player';
-            final isNarrator = message.role == 'narrator' || message.role == 'ai';
 
             return ChatBubble(
               content: message.content,

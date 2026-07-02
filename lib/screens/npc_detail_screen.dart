@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../config/theme.dart';
 import '../models/npc_character.dart';
 import '../models/relationship.dart';
 import '../providers/player_provider.dart';

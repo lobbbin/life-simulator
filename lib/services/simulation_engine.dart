@@ -3,44 +3,29 @@ import '../database/app_database.dart';
 import '../models/player.dart';
 import '../models/player_stats.dart';
 import '../models/player_skill.dart';
-import '../models/player_trait.dart';
 import '../models/location.dart';
-import '../models/npc_character.dart';
-import '../models/relationship.dart';
 import '../models/career_path.dart';
 import '../models/career_milestone.dart';
-import '../models/business.dart';
-import '../models/investment.dart';
 import '../models/education_stage.dart';
-import '../models/prison_sentence.dart';
-import '../models/political_position.dart';
-import '../models/scandal.dart';
-import '../models/film_project.dart';
-import '../models/crime_crew.dart';
-import '../models/inventory_item.dart';
-import '../models/calendar_event.dart';
 import '../models/memory.dart';
 import '../models/will.dart';
 import 'time_service.dart';
 import 'memory_service.dart';
 import 'event_service.dart';
 import 'ai_service.dart';
-import 'prompt_builder.dart';
 
 class SimulationEngine {
   final AppDatabase _database;
-  final AiService _aiService;
   final MemoryService _memoryService;
   final TimeService _timeService;
   final EventService _eventService;
-  final PromptBuilder _promptBuilder = PromptBuilder();
   final Random _random = Random();
 
   int? _currentPlayerId;
   Player? _player;
   PlayerStats? _stats;
 
-  SimulationEngine(this._database, this._aiService, this._memoryService,
+  SimulationEngine(this._database, AiService aiService, this._memoryService,
       this._timeService, this._eventService);
 
   int? get currentPlayerId => _currentPlayerId;
@@ -399,7 +384,6 @@ class SimulationEngine {
 
       // Execute each bequest
       for (final b in bequests) {
-        final bequest = WillBequest.fromMap(b);
         // In a full implementation, this would transfer assets
       }
     } else {

@@ -7,7 +7,6 @@ import '../services/memory_service.dart';
 
 class ChatProvider extends ChangeNotifier {
   final AiService _aiService;
-  final MemoryService _memoryService;
   List<ConversationMessage> _messages = [];
   List<String> _suggestedActions = [];
   bool _isLoading = false;
@@ -15,7 +14,7 @@ class ChatProvider extends ChangeNotifier {
   String _systemPrompt = '';
   bool _aiConfigured = false;
 
-  ChatProvider(this._aiService, this._memoryService);
+  ChatProvider(this._aiService, MemoryService memoryService);
 
   List<ConversationMessage> get messages => _messages;
   List<String> get suggestedActions => _suggestedActions;

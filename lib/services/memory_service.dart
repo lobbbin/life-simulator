@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import '../database/app_database.dart';
 import '../models/memory.dart';
 
@@ -81,28 +80,7 @@ class MemoryService {
 
     var memories = results.map((m) => Memory.fromMap(m)).toList();
 
-    // Score and rank memories by relevance
-    if (locationId != null || npcIds != null) {
-      for (int i = 0; i < memories.length; i++) {
-        int score = 0;
-        final mem = memories[i];
-
-        if (locationId != null && mem.locationId == locationId) {
-          score += 3;
-        }
-
-        if (npcIds != null && mem.involvedNpcs != null) {
-          try {
-            final involved = jsonDecode(mem.involvedNpcs!) as List;
-            if (involved.any((id) => npcIds.contains(id))) {
-              score += 3;
-            }
-          } catch (_) {}
-        }
-
-        // Re-sort not needed for simple approach
-      }
-    }
+    // Relevance scoring will be improved with embedding search
 
     return memories.take(limit).toList();
   }

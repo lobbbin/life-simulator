@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../config/theme.dart';
 import '../models/inventory_item.dart';
 import '../providers/player_provider.dart';
 

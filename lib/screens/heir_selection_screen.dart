@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/player_provider.dart';
 import '../providers/simulation_provider.dart';
 import '../config/routes.dart';
 
