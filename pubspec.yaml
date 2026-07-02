@@ -1,0 +1,30 @@
+name: life_simulator
+description: A modern-day, AI-powered text-based life simulator for Android.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.1
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  http: ^1.1.0
+  intl: ^0.19.0
+  uuid: ^4.2.1
+  shared_preferences: ^2.2.2
+  crypto: ^3.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  mockito: ^5.4.4
+  sqflite_common_ffi: ^2.3.1
+  test: ^1.24.9
+
+flutter:
+  uses-material-design: true

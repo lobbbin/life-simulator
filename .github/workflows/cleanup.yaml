@@ -1,0 +1,26 @@
+# =============================================================================
+# Life Simulator — Artifact Cleanup
+# =============================================================================
+# Scheduled job to delete old workflow artifacts, keeping costs low.
+# =============================================================================
+
+name: Cleanup Artifacts
+
+on:
+  schedule:
+    # Run daily at 3 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    name: Delete old artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Cleanup
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: '7 days'
+          skip-recent: 3
