@@ -382,10 +382,7 @@ class SimulationEngine {
       final bequests = await _database.query('will_bequests',
           where: 'will_id = ?', whereArgs: [will.id]);
 
-      // Execute each bequest
-      for (final b in bequests) {
-        // In a full implementation, this would transfer assets
-      }
+      // Execute each bequest (asset transfer logic to be implemented)
     } else {
       // Intestate defaults
       final spouse = await _database.queryFirst('family_tree',

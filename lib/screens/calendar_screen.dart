@@ -94,7 +94,6 @@ class CalendarScreen extends StatelessWidget {
   }
 
   Widget _buildSeasonInfo(BuildContext context, TimeProvider time) {
-    final ctx = this.context;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),

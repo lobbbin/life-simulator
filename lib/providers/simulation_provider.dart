@@ -11,23 +11,18 @@ import '../services/simulation_engine.dart';
 
 class SimulationProvider extends ChangeNotifier {
   final SimulationEngine _engine;
-  final AppDatabase _database;
-  final AiService _aiService;
-  final MemoryService _memoryService;
-  final TimeService _timeService;
-  final EventService _eventService;
 
   bool _isInitialized = false;
   bool _isNewGame = false;
 
   SimulationProvider(
-    this._database,
-    this._aiService,
-    this._memoryService,
-    this._timeService,
-    this._eventService,
+    AppDatabase database,
+    AiService aiService,
+    MemoryService memoryService,
+    TimeService timeService,
+    EventService eventService,
   ) : _engine = SimulationEngine(
-          _database, _aiService, _memoryService, _timeService, _eventService,
+          database, aiService, memoryService, timeService, eventService,
         );
 
   SimulationEngine get engine => _engine;
