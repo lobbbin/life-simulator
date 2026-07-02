@@ -1,0 +1,87 @@
+# =============================================================================
+# Life Simulator — Pull Request Checks
+# =============================================================================
+# Fast CI for every pull request: analyze + unit tests only.
+# The full build is triggered by the build.yaml workflow.
+# =============================================================================
+
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+
+env:
+  FLUTTER_VERSION: '3.22.x'
+
+jobs:
+  analyze:
+    name: Analyze & Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            .dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      # Generate android/ directory if it doesn't exist in the repo
+      - name: Create platform projects
+        run: flutter create --platforms=android --project-name life_simulator .
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        # Using --fatal-warnings (not --fatal-infos) to avoid failing on
+        # minor lint suggestions during PR development
+        run: flutter analyze --fatal-warnings
+
+      - name: Run tests
+        run: |
+          if [ -d test ] && [ "$(ls -A test 2>/dev/null)" ]; then
+            flutter test --coverage
+          else
+            echo "No tests found — skipping test step"
+          fi
+
+      - name: Install coverage tools
+        if: hashFiles('coverage/lcov.info') != ''
+        run: sudo apt-get update && sudo apt-get install -y lcov bc
+
+      - name: Check test coverage threshold
+        if: hashFiles('coverage/lcov.info') != ''
+        run: |
+          total=$(lcov --summary coverage/lcov.info 2>&1 | grep 'lines' | awk '{print $2}' | tr -d '%')
+          echo "Line coverage: $total%"
+          if [ -n "$total" ] && [ "$(echo "$total < 20" | bc -l)" -eq 1 ]; then
+            echo "Warning: Coverage ($total%) is below 20% threshold."
+          fi
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: |
+            coverage/
+            test/
+          retention-days: 7
